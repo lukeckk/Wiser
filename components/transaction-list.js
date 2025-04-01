@@ -1,15 +1,43 @@
 import TransactionItem from "./transaction"
+import TransactionSummaryItem from "./transaction-summary"
 
+const groupAndSumTransactionsByDate = (transactions) => {
+  const grouped = {}
+  for (const transaction of transactions) {
+    const date = transaction.created_at.split('T')[0]
+    if (!grouped[date]) {
+      grouped[date] = { transactions: [], amount: 0 }
+    }
+    grouped[date].transactions.push(transaction)
+    // if transaction type is 'expense', amount = amount - transation.amount, else amount = transaction.amount
+    const amount = transaction.type === 'Expense' ? -transaction.amount : transaction.amount
+    // add the amount for non-expense
+    grouped[date].amount += amount
+  }
+  return grouped
+}
 
 export default async function TransactionList() {
   const response = await fetch(
     'http://localhost:3003/transactions'
   )
   const transactions = await response.json()
+  const grouped = groupAndSumTransactionsByDate(transactions)
 
-  return (<section className="space-y-4">
-    {transactions.map(transaction => <div key={transaction.id}>
-      <TransactionItem type={transaction.type} category={transaction.category} description={transaction.description} amount={transaction.amount} />
-    </div>)}
-  </section>)
+  return (
+    <div className="space-y-8">
+      {Object.entries(grouped)
+        .map(([date, { transactions, amount }]) =>
+          <div key={date}>
+            <TransactionSummaryItem date={date} amount={amount} />
+            <hr className="my-4 border-gray-200 dark:border-gray-800" />
+            <section className="space-y-4">
+              {transactions.map(transaction => <div key={transaction.id}>
+                <TransactionItem {...transaction} />
+              </div>)}
+            </section>
+          </div>
+        )}
+    </div>
+  )
 }

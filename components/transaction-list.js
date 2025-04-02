@@ -6,6 +6,7 @@ const groupAndSumTransactionsByDate = (transactions) => {
   for (const transaction of transactions) {
     const date = transaction.created_at.split('T')[0]
     if (!grouped[date]) {
+      // creates a 'date' key which has values of 'transations' and 'amount' as nested keys
       grouped[date] = { transactions: [], amount: 0 }
     }
     grouped[date].transactions.push(transaction)

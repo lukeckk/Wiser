@@ -10,6 +10,7 @@ import { transactionSchema } from "@/lib/validation";
 import { useState } from "react";
 import { useRouter } from "next/navigation"
 import { purgeTransactionListCache } from "@/lib/actions";
+import FormError from "./form-error";
 
 export default function TransactionForm() {
   const {
@@ -69,19 +70,19 @@ export default function TransactionForm() {
       <div>
         <Label className="mb-1">Date</Label>
         <Input {...register("created_at")} />
-        {errors.created_at && <p className="mt-1 text-red-500">{errors.created_at.message}</p>}
+        <FormError error={errors.created_at} />
       </div>
 
       <div>
         <Label className="mb-1">Amount</Label>
         <Input type="number" {...register("amount")} />
-        {errors.amount && <p className="mt-1 text-red-500">{errors.amount.message}</p>}
+        <FormError error={errors.amount} />
       </div>
 
       <div className="col-span-1 md:col-span-2">
         <Label className="mb-1">Description</Label>
         <Input {...register("description")} />
-        {errors.description && <p className="mt-1 text-red-500">{errors.description.message}</p>}
+        <FormError error={errors.description} />
       </div>
     </div>
 

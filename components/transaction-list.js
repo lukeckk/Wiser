@@ -1,3 +1,4 @@
+import { createClient } from "@/lib/supabase/server"
 import TransactionItem from "./transaction"
 import TransactionSummaryItem from "./transaction-summary"
 
@@ -19,15 +20,11 @@ const groupAndSumTransactionsByDate = (transactions) => {
 }
 
 export default async function TransactionList() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/transactions`,
-    {
-      next: {
-        tags: ['transaction-list']  // giving this a tag name, so purgeTransactionListCache() knows where to find and reset cache
-      }
-    }
-  )
-  const transactions = await response.json()
+  const supabase = await createClient()
+  const { data: transactions, error } = await supabase
+    .from('transactions')
+    .select('*')
+    .order('created_at', { ascending: true })
   const grouped = groupAndSumTransactionsByDate(transactions)
 
   return (

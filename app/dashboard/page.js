@@ -11,10 +11,6 @@ import { createClient } from "@/lib/supabase/server"
 export default async function Dashboard() {
   const client = await createClient()
 
-  console.log(
-    await client.from('transactions').select()
-  )
-
   return (
     <>
       <section className="mb-8">

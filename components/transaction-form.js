@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"
 import { purgeTransactionListCache } from "@/lib/actions";
 import FormError from "./form-error";
+import { createTransaction } from "@/lib/actions";
 
 export default function TransactionForm() {
   const {
@@ -29,25 +30,15 @@ export default function TransactionForm() {
   const onSubmit = async (data) => {
     setSaving(true)
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data,
-          created_at: `${data.created_at}T00:00:00`
-        })
-      })
-      await purgeTransactionListCache()
+      await createTransaction(data)
+
       router.push('/dashboard')
     } finally {
       setSaving(false)
     }
   }
 
-  return <form className="space-y-4"
-    onSubmit={handleSubmit(onSubmit)}>
+  return <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
         <Label className="mb-1">Type</Label>

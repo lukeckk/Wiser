@@ -1,6 +1,7 @@
 import TransactionList from "@/components/transaction-list"
 import { Suspense } from "react"
 import TransactionListFallback from "@/components/transaction-list-fallback"
+import TrendFetch from "@/components/trend-fetch"
 import Trend from "@/components/trend"
 import TrendFallback from "@/components/trend-fallback"
 import Link from 'next/link'
@@ -20,7 +21,7 @@ export default async function Dashboard() {
       <section className="mb-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
         {types.map(type => <ErrorBoundary key={type} fallback={<div className="text-red-500">Cannot fetch {type} trend data</div>}>
           <Suspense fallback={<TrendFallback />}>
-            <Trend type={type} />
+            <TrendFetch type={type} />
           </Suspense>
         </ErrorBoundary>)}
       </section>

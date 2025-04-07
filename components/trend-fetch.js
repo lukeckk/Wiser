@@ -1,8 +1,14 @@
 import Trend from "./trend"
+import { createClient } from "@/lib/supabase/server"
 
 export default async function TrendFetch({ type }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/trends/${type}`)
-  // destruturing applied below, works the same as response.amount, response.prevAmount
-  const { amount, prevAmount } = await response.json()
-  return <Trend type={type} amount={amount} prevAmount={prevAmount} />
+  const supabase = await createClient()
+  let { data, error } = await supabase
+    .rpc('calculate_total', {
+      type_arg: type
+    })
+  if (error) throw new Error("Could not fetch the trend data")
+  const amount = data ?? 0
+
+  return <Trend type={type} amount={amount} prevAmount={amount - 500} />
 }

@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { transactionSchema } from "@/lib/validation";
 import { useState } from "react";
 import { useRouter } from "next/navigation"
-import { purgeTransactionListCache } from "@/lib/actions";
 import FormError from "./form-error";
 import { createTransaction } from "@/lib/actions";
 
@@ -26,14 +25,19 @@ export default function TransactionForm() {
 
   const router = useRouter()
   const [isSaving, setSaving] = useState(false)
+  const [lastError, setLastError] = useState()
 
   const onSubmit = async (data) => {
     setSaving(true)
+    setLastError()
     try {
       await createTransaction(data)
-
       router.push('/dashboard')
-    } finally {
+    }
+    catch (error) {
+      setLastError(error)
+    }
+    finally {
       setSaving(false)
     }
   }
@@ -78,6 +82,9 @@ export default function TransactionForm() {
     </div>
 
     <div className="flex justify-end">
+      <div>
+        {lastError && <FormError error={lastError} />}
+      </div>
       <Button type="submit" disabled={isSaving}>Save</Button>
     </div>
   </form>

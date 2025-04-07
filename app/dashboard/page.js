@@ -11,8 +11,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import { types } from "@/lib/consts"
 import Range from "@/components/range"
 
-export default async function Dashboard() {
-
+export default async function Dashboard({ searchParams }) {
+  //if searchParams exists, get its range value, else return undefined. If the range returned exists, use whatever in the range, else use 'last30days'?
+  const range = searchParams?.range ?? 'last30days'
   return (
     <>
       <section className="mb-8 flex justify-between items-center">
@@ -25,7 +26,7 @@ export default async function Dashboard() {
       <section className="mb-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
         {types.map(type => <ErrorBoundary key={type} fallback={<div className="text-red-500">Cannot fetch {type} trend data</div>}>
           <Suspense fallback={<TrendFallback />}>
-            <TrendFetch type={type} />
+            <TrendFetch type={type} range={range} />
           </Suspense>
         </ErrorBoundary>)}
       </section>

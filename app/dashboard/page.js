@@ -12,8 +12,8 @@ import { types } from "@/lib/consts"
 import Range from "@/components/range"
 
 export default async function Dashboard({ searchParams }) {
-  //if searchParams exists, get its range value, else return undefined. If the range returned exists, use whatever in the range, else use 'last30days'?
-  const range = searchParams?.range ?? 'last30days'
+  const params = await searchParams
+  const range = params?.range ?? 'last30days'
   return (
     <>
       <section className="mb-8 flex justify-between items-center">

@@ -1,21 +1,10 @@
-import { createClient } from "@/lib/supabase/server"
+'create client'
 import TransactionItem from "./transaction"
 import TransactionSummaryItem from "./transaction-summary"
 import { groupAndSumTransactionsByDate } from "@/lib/utils"
 
-export default async function TransactionList({ range }) {
-  const supabase = await createClient()
-
-  // fetching transaction from supabase according to range
-  let { data: transactions, error } = await supabase
-    .rpc('fetch_transactions', {
-      // limit_arg,
-      // offset_arg,
-      range_arg: range
-    })
-  if (error) throw new Error("We cant fetch transactions")
-
-  const grouped = groupAndSumTransactionsByDate(transactions)
+export default async function TransactionList({ initialTransactions }) {
+  const grouped = groupAndSumTransactionsByDate(initialTransactions)
 
   return (
     <div className="space-y-8">

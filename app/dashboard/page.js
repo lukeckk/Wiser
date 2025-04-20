@@ -40,7 +40,7 @@ export default async function Dashboard({ searchParams }) {
       </section>
 
       <Suspense fallback={<TransactionListFallback />}>
-        <TransactionList />
+        <TransactionList range={range} />
       </Suspense>
     </>
   )

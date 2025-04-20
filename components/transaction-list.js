@@ -1,30 +1,20 @@
 import { createClient } from "@/lib/supabase/server"
 import TransactionItem from "./transaction"
 import TransactionSummaryItem from "./transaction-summary"
+import { groupAndSumTransactionsByDate } from "@/lib/utils"
 
-const groupAndSumTransactionsByDate = (transactions) => {
-  const grouped = {}
-  for (const transaction of transactions) {
-    const date = transaction.created_at.split('T')[0]
-    if (!grouped[date]) {
-      // creates a 'date' key which has values of 'transations' and 'amount' as nested keys
-      grouped[date] = { transactions: [], amount: 0 }
-    }
-    grouped[date].transactions.push(transaction)
-    // if transaction type is 'expense', amount = amount - transation.amount, else amount = transaction.amount
-    const amount = transaction.type === 'Expense' ? -transaction.amount : transaction.amount
-    // add the amount for non-expense
-    grouped[date].amount += amount
-  }
-  return grouped
-}
-
-export default async function TransactionList() {
+export default async function TransactionList({ range }) {
   const supabase = await createClient()
-  const { data: transactions, error } = await supabase
-    .from('transactions')
-    .select('*')
-    .order('created_at', { ascending: false })
+
+  // fetching transaction from supabase according to range
+  let { data: transactions, error } = await supabase
+    .rpc('fetch_transactions', {
+      // limit_arg,
+      // offset_arg,
+      range_arg: range
+    })
+  if (error) throw new Error("We cant fetch transactions")
+
   const grouped = groupAndSumTransactionsByDate(transactions)
 
   return (

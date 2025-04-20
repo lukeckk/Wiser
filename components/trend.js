@@ -13,11 +13,12 @@ export default function Trend({ type, amount, prevAmount }) {
 
   const calPrevAmount = (amount, prevAmount) => {
     if (!prevAmount || !amount) { return 0 }
-    return (((amount - prevAmount) / prevAmount) * 100).toFixed(0);
+    return (((amount - prevAmount) / prevAmount) * 100);
   }
 
   const percentageChange = useMemo(
-    () => calPrevAmount(amount, prevAmount), [amount, prevAmount]
+    () => calPrevAmount(amount, prevAmount).toFixed(0),
+    [amount, prevAmount]
   )
 
   const formattedCurrency = useFormatCurrency(amount)

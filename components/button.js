@@ -1,12 +1,5 @@
-import { sizes, variants } from "@/lib/variants"
+import { sizes, variants } from "@/lib/variants";
 
-export default function Button({ children, variant, size, ...props }) {
-  return (
-    <button
-      {...props}
-      className={`${variant ? variants[variant] : variants['default']} ${size ? sizes[size] : sizes['base']}`}
-    >
-      {children}
-    </button>
-  )
+export default function Button(props) {
+  return (<button {...props} className={`${props.variant ? variants[props.variant] : variants['default']} ${props.size ? sizes[props.size] : sizes['base']} ${props.className}`}></button>)
 }

@@ -11,10 +11,15 @@ import { ErrorBoundary } from "react-error-boundary";
 import { types } from "@/lib/consts"
 import Range from "@/components/range"
 import TransactionListWrapper from "@/components/transaction-list-wrapper"
+import { createClient } from "@/lib/supabase/server"
 
 export default async function Dashboard({ searchParams }) {
   const params = await searchParams
   const range = params?.range ?? 'last30days'
+
+  const supabase = await createClient()
+  console.log(await supabase.auth.getUser())
+
   return (<div className="space-y-8">
     <section className="flex justify-between items-center">
       <h1 className="text-4xl font-semibold">Summary</h1>

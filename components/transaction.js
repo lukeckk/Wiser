@@ -4,7 +4,7 @@ import TransactionItemRemoveButton from "./transaction-item-remove-button"
 import Link from "next/link"
 import { sizes, variants } from "@/lib/variants"
 
-export default function TransactionItem({ id, type, category, description, amount }) {
+export default function TransactionItem({ id, type, category, description, amount, onRemoved }) {
   const typesMap = {
     'Income': {
       icon: HandCoins,
@@ -42,7 +42,7 @@ export default function TransactionItem({ id, type, category, description, amoun
       <Link href={`/dashboard/transaction/${id}/edit`} className={`${variants['ghost']} ${sizes['xs']}`}>
         <Pencil className="w-4 h-4" />
       </Link>
-      <TransactionItemRemoveButton id={id} />
+      <TransactionItemRemoveButton id={id} onRemoved={onRemoved} />
     </div>
   </div>)
 }

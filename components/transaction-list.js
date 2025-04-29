@@ -28,6 +28,11 @@ export default function TransactionList({ range, initialTransactions }) {
     }
   }
 
+  // update the local React state by filtering out the deleted transaction:
+  const handleRemoved = (id) => () => {
+    setTransactions(prev => [...prev].filter(t => t.id !== id))
+  }
+
   return (
     <div className="space-y-8">
       {Object.entries(grouped)
@@ -37,7 +42,7 @@ export default function TransactionList({ range, initialTransactions }) {
             <hr className="my-4 border-gray-200 dark:border-gray-800" />
             <section className="space-y-4">
               {transactions.map(transaction => <div key={transaction.id}>
-                <TransactionItem {...transaction} />
+                <TransactionItem {...transaction} onRemoved={handleRemoved(transaction.id)} />
               </div>)}
             </section>
           </div>

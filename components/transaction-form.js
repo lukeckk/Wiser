@@ -10,7 +10,7 @@ import { transactionSchema } from "@/lib/validation";
 import { useState } from "react";
 import { useRouter } from "next/navigation"
 import FormError from "./form-error";
-import { createTransactio, updateTransaction } from "@/lib/actions";
+import { createTransaction, updateTransaction } from "@/lib/actions";
 
 
 export default function TransactionForm({ initialData }) {

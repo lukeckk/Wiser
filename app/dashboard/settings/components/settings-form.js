@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export default function SettingsForm({ defaults }) {
-  console.log(defaults);
   const [state, formAction] = useActionState(
     updateSettings,
     initialState,

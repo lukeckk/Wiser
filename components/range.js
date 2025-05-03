@@ -2,11 +2,11 @@
 import DateRangeSelect from "./data-range-select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function Range() {
+export default function Range({ defaultView }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()    //current URL /dashboard
   const { replace } = useRouter()
-  const range = searchParams.get('range') ?? 'last30days' // set last30days as default
+  const range = searchParams.get('range') ?? defaultView ?? 'last30days' // set last30days as default
 
   const handleChange = (e) => {
     // 1. Create a new URLSearchParams object

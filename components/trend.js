@@ -12,7 +12,11 @@ export default function Trend({ type, amount, prevAmount }) {
 
 
   const calPrevAmount = (amount, prevAmount) => {
-    if (!prevAmount || !amount) { return 0 }
+    if (!prevAmount) {
+      // If previous amount is 0, but current is positive, show 100%
+      return amount > 0 ? 100 : 0;
+    }
+    if (!amount) return 0;
     return (((amount - prevAmount) / prevAmount) * 100);
   }
 

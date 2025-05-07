@@ -34,7 +34,7 @@ export default function TransactionList({ range, initialTransactions }) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 mb-8">
       {Object.entries(grouped)
         .map(([date, { transactions, amount }]) =>
           <div key={date}>

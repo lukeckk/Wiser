@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-8 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold">Wiser</span>
@@ -64,7 +64,6 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="w-full border-t bg-muted py-12">
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
@@ -143,6 +142,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
     </div>
   )
 }

@@ -40,14 +40,14 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-8">
                     Take Control of Your Finances, Build Better Habits
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Track your daily savings and expenses with ease. Our all-in-one finance tracker helps you stay on top of your spending, reach your goals, and understand your money—one transaction at a time.
                   </p>
                 </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                <div className="flex flex-col gap-2 min-[400px]:flex-row mt-8">
                   <Button size="lg">
                     <Link href="/login">Get Started</Link>
                   </Button>

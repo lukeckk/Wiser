@@ -36,6 +36,13 @@ export default async function Dashboard({ searchParams }) {
       </ErrorBoundary>)}
     </section>
 
+    <section className="flex justify-between items-center">
+      <h2 className="text-2xl">AI Feedback</h2>
+      <div>
+
+      </div>
+    </section>
+
     <section className="flex justify-between items-center mb-8">
       <h2 className="text-2xl">Transactions</h2>
       <Link href="/dashboard/transaction/add" className={`flex items-center space-x-1 ${variants['outline']} ${sizes['sm']}`}>

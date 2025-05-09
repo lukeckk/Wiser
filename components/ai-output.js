@@ -1,10 +1,15 @@
-export default function AiOutput({ output }) {
-  if (!output) return null;
+import { fetchTransactions, analyzeTransactions } from "@/lib/actions";
 
-  console.log(output)
+export default async function AiOutput({ range }) {
+  const transactions = await fetchTransactions(range)
+
+  const analysis = await analyzeTransactions(transactions)
+  if (!analysis) return null;
+
+  console.log(analysis)
 
   // Split the output into lines
-  const lines = output.split('\n').map(line => line.trim()).filter(Boolean);
+  const lines = analysis.split('\n').map(line => line.trim()).filter(Boolean);
 
   // Find the first line that starts with '*', which marks the start of bullet points
   const bulletStart = lines.findIndex(line => line.startsWith('*'));

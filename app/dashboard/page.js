@@ -12,6 +12,7 @@ import { types } from "@/lib/consts"
 import Range from "@/components/range"
 import TransactionListWrapper from "@/components/transaction-list-wrapper"
 import { createClient } from "@/lib/supabase/server"
+import AiOutput from "@/components/ai-output"
 
 export default async function Dashboard({ searchParams }) {
   const params = await searchParams
@@ -38,8 +39,8 @@ export default async function Dashboard({ searchParams }) {
 
     <section className="flex justify-between items-center">
       <h2 className="text-2xl">AI Feedback</h2>
-      <div>
-
+      <div className="ml-10 mt-8 mb-8">
+        <AiOutput range={range} />
       </div>
     </section>
 

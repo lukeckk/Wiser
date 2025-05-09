@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold">Wiser</span>
             </div>
-            <p className="text-sm text-muted-foreground">Take Control of Your Finances, Build Better Habits.</p>
+            <p className="text-sm text-muted-foreground">Take Control of Your Finances with Smart AI Guidance.</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground">
                 <Twitter className="h-5 w-5" />

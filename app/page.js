@@ -41,22 +41,27 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-8">
-                    Take Control of Your Finances, Build Better Habits
+                    Take Control of Your Finances with Smart AI Guidance
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Track your daily savings and expenses with ease. Our all-in-one finance tracker helps you stay on top of your spending, reach your goals, and understand your money—one transaction at a time.
-                  </p>
+                    Track your daily savings and expenses with ease. Our all-in-one finance tracker uses AI to help you understand your money, build better habits, and reach your goals one transaction at a time.                  </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row mt-8">
                   <Button size="lg">
                     <Link href="/login">Get Started</Link>
                   </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <Link href="#demo" className="flex items-center">
+                      Watch Demo
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
               <Image
-                src="/images/example.png"
-                width={800}
-                height={800}
+                src="/images/wiser.png"
+                width={1000}
+                height={1000}
                 alt="Hero Image"
               />
             </div>

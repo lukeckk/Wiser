@@ -51,7 +51,7 @@ export default function Home() {
                     <Link href="/login">Get Started</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link href="#demo" className="flex items-center">
+                    <Link href="https://youtu.be/3x2g0Pip8fs" className="flex items-center">
                       Watch Demo
                       <ChevronRight className="ml-1 h-4 w-4" />
                     </Link>

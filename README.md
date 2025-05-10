@@ -26,8 +26,8 @@
 
 - **Framework**: [Next.js 15](https://nextjs.org/)
 - **Database & Auth**: [Supabase](https://supabase.com/)
-- **AI Feedback**: LLaMA 4 (via API or local integration)
-- **UI**: React 19, Tailwind CSS, Lucide Icons
+- **AI Feedback**: LLaMA 4
+- **UI**: React, Tailwind CSS, Lucide Icons
 - **Validation**: Zod
 - **State Management**: React Hooks, React Hook Form
 

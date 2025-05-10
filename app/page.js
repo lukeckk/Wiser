@@ -23,7 +23,7 @@ export default function Home() {
             <Link href="#pricing" className="text-sm font-medium hover:text-primary">
               Pricing
             </Link>
-            <Link href="#contact" className="text-sm font-medium hover:text-primary">
+            <Link href="mailto:lukeechengdev@gmail.com" className="text-sm font-medium hover:text-primary">
               Contact
             </Link>
             <Button>

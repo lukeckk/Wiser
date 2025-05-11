@@ -24,8 +24,8 @@
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/)
-- **Database & Auth**: [Supabase](https://supabase.com/)
+- **Framework**: Next.js
+- **Database & Auth**: Supabase
 - **AI Feedback**: LLaMA 4
 - **UI**: React, Tailwind CSS, Lucide Icons
 - **Validation**: Zod
